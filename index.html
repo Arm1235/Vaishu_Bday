@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Countdown</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            overflow: hidden;
+        }
+        
+        .container {
+            text-align: center;
+            padding: 2rem;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 90%;
+            backdrop-filter: blur(10px);
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            color: #e91e63;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #555;
+        }
+        
+        .countdown {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .countdown-item {
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            border-radius: 15px;
+            padding: 1.5rem;
+            min-width: 120px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+        }
+        
+        .countdown-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .countdown-value {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .countdown-label {
+            font-size: 1rem;
+            color: #fff;
+            margin-top: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .message {
+            font-size: 1.2rem;
+            margin-top: 2rem;
+            color: #555;
+            font-style: italic;
+        }
+        
+        .heart {
+            color: #e91e63;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        
+        .floating-hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        
+        .heart-float {
+            position: absolute;
+            bottom: -20px;
+            color: rgba(233, 30, 99, 0.7);
+            animation: float-up 8s linear infinite;
+        }
+        
+        @keyframes float-up {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .age {
+            font-size: 1.8rem;
+            margin-top: 1.5rem;
+            color: #e91e63;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .subtitle { font-size: 1.2rem; }
+            .countdown-item { min-width: 100px; padding: 1rem; }
+            .countdown-value { font-size: 2.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-hearts" id="hearts-container"></div>
+    
+    <div class="container">
+        <h1>Happy Birthday Vaishu&nbsp;<span class="heart">❤️</span></h1>
+        <div class="subtitle">Counting down to your special day!</div>
+        
+        <div class="countdown" id="countdown">
+            <div class="countdown-item">
+                <div class="countdown-value" id="days">00</div>
+                <div class="countdown-label">Days</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-value" id="hours">00</div>
+                <div class="countdown-label">Hours</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-value" id="minutes">00</div>
+                <div class="countdown-label">Minutes</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-value" id="seconds">00</div>
+                <div class="countdown-label">Seconds</div>
+            </div>
+        </div>
+        
+        <div class="age">Turning <span id="age">20</span> on September 7th!</div>
+        
+        <div class="message">
+            The most special day of the year is getting closer!
+        </div>
+    </div>
+
+    <script>
+        // Create floating hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-float');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+            heart.style.animationDuration = Math.random() * 3 + 5 + 's';
+            document.getElementById('hearts-container').appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 8000);
+        }
+        
+        setInterval(createHeart, 800);
+        
+        // Countdown functionality
+        function updateCountdown() {
+            const now = new Date();
+            const currentYear = now.getFullYear();
+            
+            // Set target date to September 7th at 00:00:00
+            let targetDate = new Date(currentYear, 8, 7); // Month is 0-indexed (8 = September)
+            
+            // If the date has passed this year, set to next year
+            if (now > targetDate) {
+                targetDate = new Date(currentYear + 1, 8, 7);
+            }
+            
+            // Calculate difference
+            const diff = targetDate - now;
+            
+            // If countdown is complete
+            if (diff <= 0) {
+                document.getElementById('countdown').innerHTML = '<div class="countdown-item"><div class="countdown-value">00</div><div class="countdown-label">Days</div></div><div class="countdown-item"><div class="countdown-value">00</div><div class="countdown-label">Hours</div></div><div class="countdown-item"><div class="countdown-value">00</div><div class="countdown-label">Minutes</div></div><div class="countdown-item"><div class="countdown-value">00</div><div class="countdown-label">Seconds</div></div>';
+                document.querySelector('.message').innerHTML = "It's your special day! <a href='gallery.html' style='color: #e91e63; font-weight: bold; text-decoration: none;'>Click here to see your surprise!</a>";
+                return;
+            }
+            
+            // Calculate time units
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            // Update DOM
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            
+            // Calculate age
+            const birthYear = 2004;
+            const age = targetDate.getFullYear() - birthYear;
+            document.getElementById('age').textContent = age;
+        }
+        
+        // Initial call and set interval
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
+
+</body></html>
