@@ -82,7 +82,7 @@
             margin-bottom: 3rem;
         }
         
-        .gallery-button {
+        .gallery-item {
             background-color: rgba(255, 255, 255, 0.85);
             border-radius: 15px;
             overflow: hidden;
@@ -90,34 +90,18 @@
             transition: all 0.3s ease;
             animation: fadeIn 1.5s ease-in-out;
             animation-fill-mode: both;
-            cursor: pointer;
-            border: none;
-            width: 100%;
-            text-align: left;
-            position: relative;
-            text-decoration: none;
-            display: block;
         }
         
-        .gallery-button:nth-child(1) { animation-delay: 0.5s; }
-        .gallery-button:nth-child(2) { animation-delay: 0.7s; }
-        .gallery-button:nth-child(3) { animation-delay: 0.9s; }
-        .gallery-button:nth-child(4) { animation-delay: 1.1s; }
-        .gallery-button:nth-child(5) { animation-delay: 1.3s; }
-        .gallery-button:nth-child(6) { animation-delay: 1.5s; }
+        .gallery-item:nth-child(1) { animation-delay: 0.5s; }
+        .gallery-item:nth-child(2) { animation-delay: 0.7s; }
+        .gallery-item:nth-child(3) { animation-delay: 0.9s; }
+        .gallery-item:nth-child(4) { animation-delay: 1.1s; }
+        .gallery-item:nth-child(5) { animation-delay: 1.3s; }
+        .gallery-item:nth-child(6) { animation-delay: 1.5s; }
         
-        .gallery-button:hover {
+        .gallery-item:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-            background-color: rgba(255, 255, 255, 0.95);
-        }
-        
-        .gallery-button:hover .gallery-img {
-            transform: scale(1.05);
-        }
-        
-        .gallery-button:hover .gallery-caption h3 {
-            color: #d81b60;
         }
         
         .gallery-img {
@@ -125,6 +109,10 @@
             height: 250px;
             object-fit: cover;
             transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.05);
         }
         
         .gallery-caption {
@@ -136,30 +124,11 @@
             font-size: 1.5rem;
             margin-bottom: 0.5rem;
             color: #e91e63;
-            transition: color 0.3s ease;
         }
         
         .gallery-caption p {
             color: #666;
             line-height: 1.6;
-        }
-        
-        .gallery-button::after {
-            content: '\f054';
-            font-family: 'Font Awesome 5 Free';
-            font-weight: 900;
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #e91e63;
-            font-size: 1.2rem;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .gallery-button:hover::after {
-            opacity: 1;
         }
         
         .heart {
@@ -317,53 +286,53 @@
         </div>
         
         <div class="gallery">
-            <a href="beautiful-moments.html" class="gallery-button">
-                <img src="https://picsum.photos/seed/birthday1/600/400.jpg" alt="Beautiful Moments" class="gallery-img">
+            <div class="gallery-item">
+                <img src="images/beautiful-moments.jpg" alt="Beautiful Moments" class="gallery-img">
                 <div class="gallery-caption">
                     <h3>Beautiful Moments</h3>
                     <p>Every moment with you is a treasure</p>
                 </div>
-            </a>
+            </div>
             
-            <a href="special-times.html" class="gallery-button">
-                <img src="https://picsum.photos/seed/birthday2/600/400.jpg" alt="Special Times" class="gallery-img">
+            <div class="gallery-item">
+                <img src="images/special-times.jpg" alt="Special Times" class="gallery-img">
                 <div class="gallery-caption">
                     <h3>Special Times</h3>
                     <p>Creating memories that last forever</p>
                 </div>
-            </a>
+            </div>
             
-            <a href="adventures-together.html" class="gallery-button">
-                <img src="https://picsum.photos/seed/birthday3/600/400.jpg" alt="Adventures Together" class="gallery-img">
+            <div class="gallery-item">
+                <img src="images/adventures-together.jpg" alt="Adventures Together" class="gallery-img">
                 <div class="gallery-caption">
                     <h3>Adventures Together</h3>
                     <p>Life is better with you by my side</p>
                 </div>
-            </a>
+            </div>
             
-            <a href="smiles-laughter.html" class="gallery-button">
-                <img src="https://picsum.photos/seed/birthday4/600/400.jpg" alt="Smiles & Laughter" class="gallery-img">
+            <div class="gallery-item">
+                <img src="images/smiles-laughter.jpg" alt="Smiles & Laughter" class="gallery-img">
                 <div class="gallery-caption">
                     <h3>Smiles & Laughter</h3>
                     <p>Your smile lights up my world</p>
                 </div>
-            </a>
+            </div>
             
-            <a href="happy-times.html" class="gallery-button">
-                <img src="https://picsum.photos/seed/birthday5/600/400.jpg" alt="Happy Times" class="gallery-img">
+            <div class="gallery-item">
+                <img src="images/happy-times.jpg" alt="Happy Times" class="gallery-img">
                 <div class="gallery-caption">
                     <h3>Happy Times</h3>
                     <p>Every day is special with you</p>
                 </div>
-            </a>
+            </div>
             
-            <a href="our-journey.html" class="gallery-button">
-                <img src="https://picsum.photos/seed/birthday6/600/400.jpg" alt="Our Journey" class="gallery-img">
+            <div class="gallery-item">
+                <img src="images/our-journey.jpg" alt="Our Journey" class="gallery-img">
                 <div class="gallery-caption">
                     <h3>Our Journey</h3>
                     <p>So many more adventures to come</p>
                 </div>
-            </a>
+            </div>
         </div>
         
         <div class="wishes-section">
@@ -402,7 +371,6 @@
         <source src="birthday-song.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
-
     <script>
         // Create floating hearts
         function createHeart() {
