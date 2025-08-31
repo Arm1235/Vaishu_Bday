@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Countdown</title>
+    <title>Happy Birthday Vaishu!</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -16,23 +16,19 @@
         body {
             background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
             color: #333;
-            overflow: hidden;
+            padding: 2rem 0;
         }
         
         .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        header {
             text-align: center;
-            padding: 2rem;
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            max-width: 800px;
-            width: 90%;
-            backdrop-filter: blur(10px);
+            margin-bottom: 3rem;
             animation: fadeIn 1.5s ease-in-out;
         }
         
@@ -42,70 +38,161 @@
         }
         
         h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin-bottom: 0.5rem;
             color: #e91e63;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
         
         .subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
+            font-size: 1.8rem;
             color: #555;
         }
         
-        .countdown {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            margin: 2rem 0;
+        .birthday-message {
+            background-color: rgba(255, 255, 255, 0.85);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1.5s ease-in-out;
+            animation-delay: 0.3s;
+            animation-fill-mode: both;
         }
         
-        .countdown-item {
-            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+        .birthday-message h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: #e91e63;
+        }
+        
+        .birthday-message p {
+            font-size: 1.3rem;
+            color: #555;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .gallery-item {
+            background-color: rgba(255, 255, 255, 0.85);
             border-radius: 15px;
-            padding: 1.5rem;
-            min-width: 120px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-            transition: transform 0.3s ease;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            animation: fadeIn 1.5s ease-in-out;
+            animation-fill-mode: both;
         }
         
-        .countdown-item:hover {
+        .gallery-item:nth-child(1) { animation-delay: 0.5s; }
+        .gallery-item:nth-child(2) { animation-delay: 0.7s; }
+        .gallery-item:nth-child(3) { animation-delay: 0.9s; }
+        .gallery-item:nth-child(4) { animation-delay: 1.1s; }
+        .gallery-item:nth-child(5) { animation-delay: 1.3s; }
+        .gallery-item:nth-child(6) { animation-delay: 1.5s; }
+        
+        .gallery-item:hover {
             transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
         }
         
-        .countdown-value {
-            font-size: 3.5rem;
-            font-weight: bold;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        .gallery-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
         }
         
-        .countdown-label {
-            font-size: 1rem;
-            color: #fff;
-            margin-top: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.05);
         }
         
-        .message {
-            font-size: 1.2rem;
-            margin-top: 2rem;
-            color: #555;
-            font-style: italic;
+        .gallery-caption {
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .gallery-caption h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #e91e63;
+        }
+        
+        .gallery-caption p {
+            color: #666;
+            line-height: 1.6;
         }
         
         .heart {
             color: #e91e63;
             animation: pulse 1.5s infinite;
+            display: inline-block;
+            margin: 0 5px;
         }
         
         @keyframes pulse {
             0% { transform: scale(1); }
             50% { transform: scale(1.2); }
             100% { transform: scale(1); }
+        }
+        
+        .wishes-section {
+            background-color: rgba(255, 255, 255, 0.85);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1.5s ease-in-out;
+            animation-delay: 1.7s;
+            animation-fill-mode: both;
+        }
+        
+        .wishes-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: #e91e63;
+            text-align: center;
+        }
+        
+        .wishes-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+        
+        .wish-card {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            border-radius: 15px;
+            padding: 1.5rem;
+            width: 300px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .wish-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .wish-card p {
+            color: #333;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .wish-card .from {
+            text-align: right;
+            font-weight: bold;
+            color: #e91e63;
         }
         
         .floating-hearts {
@@ -132,13 +219,6 @@
                 transform: translateY(-100vh) rotate(360deg);
                 opacity: 0;
             }
-        }
-        
-        .age {
-            font-size: 1.8rem;
-            margin-top: 1.5rem;
-            color: #e91e63;
-            font-weight: bold;
         }
         
         .music-indicator {
@@ -168,11 +248,25 @@
             50% { transform: translateY(-5px); }
         }
         
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 1.5rem;
+            color: #555;
+            font-size: 1.1rem;
+            animation: fadeIn 1.5s ease-in-out;
+            animation-delay: 1.9s;
+            animation-fill-mode: both;
+        }
+        
         @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            .subtitle { font-size: 1.2rem; }
-            .countdown-item { min-width: 100px; padding: 1rem; }
-            .countdown-value { font-size: 2.8rem; }
+            h1 { font-size: 2.8rem; }
+            .subtitle { font-size: 1.5rem; }
+            .birthday-message h2 { font-size: 1.8rem; }
+            .birthday-message p { font-size: 1.1rem; }
+            .gallery { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
+            .wishes-section h2 { font-size: 1.8rem; }
+            .wish-card { width: 100%; max-width: 300px; }
             .music-indicator { bottom: 10px; right: 10px; }
         }
     </style>
@@ -181,32 +275,88 @@
     <div class="floating-hearts" id="hearts-container"></div>
     
     <div class="container">
-        <h1>Happy Birthday Vaishu&nbsp;<span class="heart">❤️</span></h1>
-        <div class="subtitle">Counting down to your special day!</div>
+        <header>
+            <h1>Happy Birthday Vaishu! <span class="heart">❤️</span></h1>
+            <div class="subtitle">Celebrating your 21st birthday!</div>
+        </header>
         
-        <div class="countdown" id="countdown">
-            <div class="countdown-item">
-                <div class="countdown-value" id="days">00</div>
-                <div class="countdown-label">Days</div>
+        <div class="birthday-message">
+            <h2>Happy 21st Birthday! 🎉</h2>
+            <p>Dear Vaishu, on this special day, I want you to know how amazing you are. You bring so much joy and happiness into my life. May your 21st birthday be filled with love, laughter, and all the things that make you smile. Here's to another year of wonderful memories together!</p>
+        </div>
+        
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="pic1.jpg" alt="Adventures Together" class="gallery-img">
+                <div class="gallery-caption">
+                    <h3>Adventures Together</h3>
+                    <p>Life is better with you by my side</p>
+                </div>
             </div>
-            <div class="countdown-item">
-                <div class="countdown-value" id="hours">00</div>
-                <div class="countdown-label">Hours</div>
+            
+            <div class="gallery-item">
+                <img src="pic2.jpg" alt="Beautiful Moments" class="gallery-img">
+                <div class="gallery-caption">
+                    <h3>Beautiful Moments</h3>
+                    <p>Every moment with you is a treasure</p>
+                </div>
             </div>
-            <div class="countdown-item">
-                <div class="countdown-value" id="minutes">00</div>
-                <div class="countdown-label">Minutes</div>
+            
+            <div class="gallery-item">
+                <img src="pic3.jpg" alt="Happy Times" class="gallery-img">
+                <div class="gallery-caption">
+                    <h3>Happy Times</h3>
+                    <p>Every day is special with you</p>
+                </div>
             </div>
-            <div class="countdown-item">
-                <div class="countdown-value" id="seconds">00</div>
-                <div class="countdown-label">Seconds</div>
+            
+            <div class="gallery-item">
+                <img src="pic4.jpg" alt="Our Journey" class="gallery-img">
+                <div class="gallery-caption">
+                    <h3>Our Journey</h3>
+                    <p>So many more adventures to come</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="pic5.jpg" alt="Smiles & Laughter" class="gallery-img">
+                <div class="gallery-caption">
+                    <h3>Smiles & Laughter</h3>
+                    <p>Your smile lights up my world</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="pic6.jpg" alt="Special Times" class="gallery-img">
+                <div class="gallery-caption">
+                    <h3>Special Times</h3>
+                    <p>Creating memories that last forever</p>
+                </div>
             </div>
         </div>
         
-        <div class="age">Turning <span id="age">20</span> on September 7th!</div>
+        <div class="wishes-section">
+            <h2>Birthday Wishes</h2>
+            <div class="wishes-container">
+                <div class="wish-card">
+                    <p>Happy 21st birthday to the most amazing person I know! May all your dreams come true today and always.</p>
+                    <div class="from">- With Love</div>
+                </div>
+                
+                <div class="wish-card">
+                    <p>Wishing you a day filled with happiness and a year filled with joy. Happy 21st birthday!</p>
+                    <div class="from">- Your Secret Admirer</div>
+                </div>
+                
+                <div class="wish-card">
+                    <p>May your 21st birthday be as special as you are. Here's to another year of being awesome!</p>
+                    <div class="from">- Your Friend</div>
+                </div>
+            </div>
+        </div>
         
-        <div class="message">
-            The most special day of the year is getting closer!
+        <div class="footer">
+            Made with <span class="heart">❤️</span> for Vaishu on her special day
         </div>
     </div>
     
@@ -216,13 +366,11 @@
         <span>Birthday Music Playing</span>
     </div>
     
-    <!-- Audio Element with Local File -->
+    <!-- Audio Element -->
     <audio id="birthdayMusic" autoplay loop>
-        <!-- Replace "birthday-song.mp3" with your actual filename -->
         <source src="birthday-song.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
-
     <script>
         // Create floating hearts
         function createHeart() {
@@ -291,52 +439,6 @@
                 });
             }
         });
-        
-        // Countdown functionality
-        function updateCountdown() {
-            const now = new Date();
-            const currentYear = now.getFullYear();
-            
-            // Set target date to September 7th at 00:00:00
-            let targetDate = new Date(currentYear, 8, 7); // Month is 0-indexed (8 = September)
-            
-            // If the date has passed this year, set to next year
-            if (now > targetDate) {
-                targetDate = new Date(currentYear + 1, 8, 7);
-            }
-            
-            // Calculate difference
-            const diff = targetDate - now;
-            
-            // If countdown is complete
-            if (diff <= 0) {
-                document.getElementById('countdown').innerHTML = '<div class="countdown-item"><div class="countdown-value">00</div><div class="countdown-label">Days</div></div><div class="countdown-item"><div class="countdown-value">00</div><div class="countdown-label">Hours</div></div><div class="countdown-item"><div class="countdown-value">00</div><div class="countdown-label">Minutes</div></div><div class="countdown-item"><div class="countdown-value">00</div><div class="countdown-label">Seconds</div></div>';
-                document.querySelector('.message').innerHTML = "It's your special day! <a href='gallery.html' style='color: #e91e63; font-weight: bold; text-decoration: none;'>Click here to see your surprise!</a>";
-                return;
-            }
-            
-            // Calculate time units
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-            
-            // Update DOM
-            document.getElementById('days').textContent = days.toString().padStart(2, '0');
-            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-            
-            // Calculate age
-            const birthYear = 2004;
-            const age = targetDate.getFullYear() - birthYear;
-            document.getElementById('age').textContent = age;
-        }
-        
-        // Initial call and set interval
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
     </script>
-
 </body>
 </html>
