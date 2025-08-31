@@ -252,6 +252,33 @@
             }
         }
         
+        .music-indicator {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: rgba(233, 30, 99, 0.8);
+            color: white;
+            border-radius: 50px;
+            padding: 8px 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1.5s ease-in-out;
+            animation-delay: 1s;
+            animation-fill-mode: both;
+            z-index: 1000;
+        }
+        
+        .music-note {
+            animation: bounce 1.5s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        
         .footer {
             text-align: center;
             margin-top: 3rem;
@@ -271,6 +298,7 @@
             .gallery { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
             .wishes-section h2 { font-size: 1.8rem; }
             .wish-card { width: 100%; max-width: 300px; }
+            .music-indicator { bottom: 10px; right: 10px; }
         }
     </style>
 </head>
@@ -362,6 +390,18 @@
             Made with <span class="heart">❤️</span> for Vaishu on her special day
         </div>
     </div>
+    
+    <!-- Music Indicator -->
+    <div class="music-indicator">
+        <i class="fas fa-music music-note"></i>
+        <span>Birthday Music Playing</span>
+    </div>
+    
+    <!-- Audio Element -->
+    <audio id="birthdayMusic" autoplay loop>
+        <source src="birthday-song.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 
     <script>
         // Create floating hearts
@@ -380,6 +420,57 @@
         }
         
         setInterval(createHeart, 800);
+        
+        // Handle autoplay restrictions
+        document.addEventListener('DOMContentLoaded', function() {
+            const audio = document.getElementById('birthdayMusic');
+            const musicIndicator = document.querySelector('.music-indicator');
+            
+            // Try to play audio
+            const playPromise = audio.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.then(_ => {
+                    // Autoplay started successfully
+                    console.log("Autoplay started");
+                })
+                .catch(error => {
+                    // Autoplay was prevented
+                    console.log("Autoplay prevented:", error);
+                    
+                    // Show a message that user needs to interact
+                    const message = document.createElement('div');
+                    message.style.position = 'fixed';
+                    message.style.bottom = '80px';
+                    message.style.left = '50%';
+                    message.style.transform = 'translateX(-50%)';
+                    message.style.backgroundColor = 'rgba(233, 30, 99, 0.9)';
+                    message.style.color = 'white';
+                    message.style.padding = '12px 20px';
+                    message.style.borderRadius = '30px';
+                    message.style.textAlign = 'center';
+                    message.style.zIndex = '1001';
+                    message.style.maxWidth = '80%';
+                    message.innerHTML = '<i class="fas fa-info-circle"></i> Click anywhere to enable birthday music';
+                    document.body.appendChild(message);
+                    
+                    // Set up click event to start audio
+                    function enableAudio() {
+                        audio.play().then(() => {
+                            message.remove();
+                            document.removeEventListener('click', enableAudio);
+                            document.removeEventListener('touchstart', enableAudio);
+                        }).catch(e => {
+                            console.log("Play failed after interaction:", e);
+                        });
+                    }
+                    
+                    // Add event listeners for user interaction
+                    document.addEventListener('click', enableAudio);
+                    document.addEventListener('touchstart', enableAudio);
+                });
+            }
+        });
     </script>
 </body>
 </html>
